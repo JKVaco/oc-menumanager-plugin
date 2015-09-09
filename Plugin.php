@@ -1,7 +1,6 @@
 <?php namespace BenFreke\MenuManager;
 
 use Backend;
-use Controller;
 use System\Classes\PluginBase;
 
 /**
@@ -18,62 +17,29 @@ class Plugin extends PluginBase
     public function pluginDetails()
     {
         return [
-            'name'        => 'benfreke.menumanager::lang.plugin.name',
-            'description' => 'benfreke.menumanager::lang.plugin.description',
-            'author'      => 'Ben Freke',
-            'icon'        => 'icon-list-alt'
-        ];
-    }
-
-    /**
-     * Create the navigation items for this plugin
-     *
-     * @return array
-     */
-    public function registerNavigation()
-    {
-        return [
-            'menumanager' => [
-                'label'    => 'benfreke.menumanager::lang.menu.name',
-                'url'      => Backend::url('benfreke/menumanager/menus'),
-                'icon'     => 'icon-list-alt',
-                'permissions' => ['benfreke.menumanager.*'],
-                'order'    => 500,
-                'sideMenu' => [
-                    'edit'    => [
-                        'label' => 'benfreke.menumanager::lang.menu.editmenu',
-                        'icon'  => 'icon-list-alt',
-                        'url'   => Backend::url('benfreke/menumanager/menus'),
-                        'permissions' => ['benfreke.menumanager.access_menumanager']
-                    ],
-                    'reorder' => [
-                        'label' => 'benfreke.menumanager::lang.menu.reordermenu',
-                        'icon'  => 'icon-exchange',
-                        'url'   => Backend::url('benfreke/menumanager/menus/reorder'),
-                        'permissions' => ['benfreke.menumanager.access_menumanager']
-                    ]
-                ]
-            ]
+            'name' => 'benfreke.menumanager::lang.app.name',
+            'description' => 'benfreke.menumanager::lang.app.description',
+            'author' => 'Ben Freke',
+            'icon' => 'icon-list-alt',
+            'homepage' => 'https://github.com/benfreke/oc-menumanager-plugin'
         ];
     }
 
     public function registerPermissions()
     {
-        return array(
-            'benfreke.menumanager.access_menumanager' => ['label' => 'Manage menu', 'tab' => 'MenuManager']
-        );
-    }
-
-    /**
-     * Register the front end component
-     *
-     * @return array
-     */
-    public function registerComponents()
-    {
         return [
-            '\BenFreke\MenuManager\Components\Menu' => 'menu',
+            'benfreke.menumanager.view' => [
+                'label' => 'benfreke.menumanager::lang.permission.view',
+                'tab' => 'benfreke.menumanager::lang.app.name'
+            ],
+            'benfreke.menumanager.move' => [
+                'label' => 'benfreke.menumanager::lang.permission.move',
+                'tab' => 'benfreke.menumanager::lang.app.name'
+            ],
+            'benfreke.menumanager.edit' => [
+                'label' => 'benfreke.menumanager::lang.permission.edit',
+                'tab' => 'benfreke.menumanager::lang.app.name'
+            ],
         ];
     }
-
 }
